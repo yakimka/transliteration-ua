@@ -5,7 +5,7 @@ x-common: &common
     target: development
     context: .
     dockerfile: Dockerfile-dev
-  image: "transcription-ua:dev"
+  image: "transliteration-ua:dev"
 #  env_file: .env
   volumes:
     - .:/opt/code

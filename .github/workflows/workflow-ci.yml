@@ -19,8 +19,8 @@ env:
   DOCKER_BUILDKIT: "1"
   COMPOSE_DOCKER_CLI_BUILD: "1"
 
-  PROJECT_NAME: "transcription-ua"
-  MODULE_NAME: "transcription_ua"
+  PROJECT_NAME: "transliteration-ua"
+  MODULE_NAME: "transliteration_ua"
   REGISTRY: "docker.io"
   REGISTRY_USERNAME: "yakimka"
   REGISTRY_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -88,7 +88,7 @@ jobs:
         with:
           files: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: yakimka/transcription-ua
+          slug: yakimka/transliteration-ua
 
       - uses: actions/upload-artifact@v4
         with:

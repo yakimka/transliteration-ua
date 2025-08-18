@@ -27,7 +27,7 @@ mypy:  ## Run mypy
 
 .PHONY: test
 test:  ## Run tests
-	$(RUN) pytest --cov=tests --cov=transcription_ua $(args)
+	$(RUN) pytest --cov=tests --cov=transliteration_ua $(args)
 	$(RUN) pytest --dead-fixtures
 
 .PHONY: package
@@ -43,7 +43,7 @@ build-package:  ## Build package
 .PHONY: build-production-image
 build-production-image:  ## Build production image
 	build-package
-	docker build -t transcription-ua:prod .
+	docker build -t transliteration-ua:prod .
 
 .PHONY: checks
 checks: lint package test  ## Run linting and tests
