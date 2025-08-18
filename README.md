@@ -8,15 +8,7 @@
 
 Ukrainian transliteration by official rules
 
-
-## CI\CD Note (delete this section)
-
-For properly running CI/CD, you must set the following environment secrets in repo settings:
-
-- `DOCKERHUB_TOKEN`
-- `PYPI_TOKEN`
-- `CODECOV_TOKEN`
-- `UPDATE_URL` for [updater](https://github.com/umputun/updater)
+https://zakon.rada.gov.ua/laws/show/55-2010-п
 
 ## Installation
 
@@ -26,44 +18,60 @@ pip install transliteration-ua
 
 ## Example
 
-Showcase how your project can be used:
+To use `transliteration-ua`, import the `transliterate_ua` function and pass a Ukrainian string to
+it:
 
 ```python
-from transliteration_ua.example import some_function
+from transliteration_ua import transliterate_ua
 
-print(some_function(3, 4))
-# => 7
+# Basic usage
+print(transliterate_ua("Привіт, Світ!"))
+# Pryvit, Svit!
+
+# Names are transliterated correctly
+print(transliterate_ua("Андрій"))
+# Andrii
+
+# Words with an apostrophe are also handled
+print(transliterate_ua("Короп'є"))
+# Koropie
 ```
 
-## Docker images
+### Custom transliteration function
 
-Docker images (amd64 and arm64) are available on
-[Docker Hub](https://hub.docker.com/r/yakimka/transliteration-ua).
+If you need to create your own transliteration function with custom rules, you can use
+the `make_transliterate_func` factory. It accepts two mapping arguments: `replacements` for
+general character mappings and `first_char_replacements` for special mappings that apply only
+to the first letter of a word.
+
+Here's how you can create a simplified transliterator:
+
+```python
+from transliteration_ua import make_transliterate_func
+
+# Define custom replacement rules
+simple_replacements = {
+    "а": "a",
+    "б": "b",
+    "в": "v",
+    # ...
+    # all the Ukrainian alphabet need to be defined here
+}
+# No special first character rules for this example
+first_char_replacements = {}
+
+# Create the custom function
+simple_transliterate = make_transliterate_func(
+    simple_replacements,
+    first_char_replacements,
+)
+
+# Use it
+print(simple_transliterate("баба"))
+# baba
+```
 
 ## Development
-
-### Quick Start
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. (?) Copy the example settings file and configure your settings:
-   ```bash
-   cp settings.example.yaml settings.yaml
-   ```
-3. Build the Docker images:
-   ```bash
-   docker-compose build
-   ```
-4. Install dependencies:
-   ```bash
-   make poetry args="install"
-   ```
-5. Start the service:
-   ```bash
-   docker-compose up
-   ```
 
 ### Making Changes
 
@@ -83,7 +91,7 @@ Docker images (amd64 and arm64) are available on
    ```bash
    make poetry args="<poetry-args>"
    ```
-   - For example: `make poetry args="add picodi"`
+    - For example: `make poetry args="add picodi"`
 
 5. For local CI debugging:
    ```bash
@@ -93,6 +101,7 @@ Docker images (amd64 and arm64) are available on
 #### Pre-commit Hooks
 
 We use [pre-commit](https://pre-commit.com/) for linting and formatting:
+
 - It runs inside a Docker container by default.
 - Optionally, set up hooks locally:
   ```bash
@@ -110,7 +119,7 @@ But don't be very strict, sometimes it's better to use `Any` type.
 
 [MIT](https://github.com/yakimka/transliteration-ua/blob/main/LICENSE)
 
-
 ## Credits
 
-This project was generated with [`yakimka/cookiecutter-pyproject`](https://github.com/yakimka/cookiecutter-pyproject).
+This project was generated with [
+`yakimka/cookiecutter-pyproject`](https://github.com/yakimka/cookiecutter-pyproject).
