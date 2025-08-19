@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pytest
 
 from transliteration_ua import transliterate_ua
