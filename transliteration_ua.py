@@ -8,13 +8,12 @@ def make_transliterate_func(
     replacements: Mapping[str, str],
     first_char_replacements: Mapping[str, str],
 ) -> Callable[[str], str]:
+    trie_root = _build_trie(replacements)
     chars = _build_with_uppercase(replacements)
 
     def transliterate(text: str, /) -> str:
         if not text:
             return ""
-
-        trie_root = _build_trie(replacements)
 
         new_text_parts = []
         i = 0
