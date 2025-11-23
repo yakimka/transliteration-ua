@@ -124,4 +124,4 @@ def test_noph8():
     """
     "ь" are not transliterated
     """
-    assert transliterate_ua("Альона Доміна", "Alona Domina")
+    assert transliterate_ua("Альона Доміна") == "Alona Domina"
