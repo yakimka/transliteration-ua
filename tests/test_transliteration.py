@@ -118,3 +118,10 @@ def test_return_uppercase_if_text_is_uppercase(text, expected):
     If the input text is all uppercase, the output should also be all uppercase.
     """
     assert transliterate_ua(text) == expected
+
+
+def test_noph8():
+    """
+    "ь" are not transliterated
+    """
+    assert transliterate_ua("Альона Доміна") == "Alona Domina"
