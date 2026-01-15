@@ -35,7 +35,7 @@ mypy = "^1.15.0"
 pre-commit = "^4.2.0"
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
-pytest-deadfixtures = "^2.2.1"
+pytest-deadfixtures = "^3.0.0"
 pytest-randomly = "^3.16"
 
 [tool.poetry]
