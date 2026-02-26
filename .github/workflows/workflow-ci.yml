@@ -90,7 +90,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: yakimka/transliteration-ua
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: built-package-py${{ matrix.python-version }}
           path: dist/
@@ -101,7 +101,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v8
         with:
           name: built-package-py${{ env.MAIN_PY_VERSION }}
           path: dist/
